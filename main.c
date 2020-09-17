@@ -7,23 +7,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
-int main(void) {
-  char *sum = readline("Enter an int: ");
-  int sumInt = atof(sum);
-  return 0;
-}
 int sum_n(int n){
+  if (n < 1){
+    return 0;
+  } else {
+    return n + sum_n(n-1);
+  }
+}
+char print_n(char *s, int n){
   if (n <= 0){
     return 0;
   } else {
-    return (n + sum_n(n-1));
-  }
-}
-void print_n(const char*s, int n) {
-  if (n <= 0){
-    return;
-  } else {
     printf("%s\n", s);
     print_n(s, n-1);
+    return 0;
   }
+}
+int main(void){
+  char *sum = readline("Enter an int: ");
+  int add = atof(sum);
+  sum_n(add);
+  printf("sum is %d.\n", sum_n(add));
+  char *print = readline("Enter a string: ");
+  print_n(print, add);
 }
